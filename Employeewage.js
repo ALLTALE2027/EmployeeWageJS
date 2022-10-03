@@ -46,3 +46,20 @@ switch (empCheck) {
     console.log("UC2- Employee is absent and his salary is: " + dailyWage);
     break;
 }
+
+//-------------------------UC3--------------------
+
+function GetEmpHrs() {
+  switch (empCheck) {
+    case isFullTime:
+      empHrs = 8;
+      break;
+    case isPartTime:
+      empHrs = 4;
+      break;
+    default:
+      empHrs = 0;
+      break;
+  }
+  return empHrs;
+}
