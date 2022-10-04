@@ -55,6 +55,7 @@ let totalWorkingHrs = 0;
 let dailyWage = [];
 let MapDailyWage = new Map();
 let MapDailyHour = new Map();
+let empDailyObjArray = [];
 
 while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   let hours = GetEmpHrs();
@@ -67,6 +68,21 @@ while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   dailyWage.push(hours * wagePerHour);
   MapDailyWage.set(totalDays, hours * wagePerHour);
   MapDailyHour.set(totalDays, hours);
+  empDailyObjArray.push({
+    day: totalDays,
+    empHrs: hours,
+    dailyWage: hours * wagePerHour,
+    toString() {
+      return (
+        "\nDay:" +
+        this.day +
+        " Daily Hrs: " +
+        this.empHrs +
+        "Daily Wage: " +
+        this.dailyWage
+      );
+    },
+  });
 }
 totalWage = totalWorkingHrs * wagePerHour;
 console.log(
@@ -166,3 +182,8 @@ process.stdout.write("UC9-B No workings days: ");
 for (const [key, value] of MapDailyHour) {
   if (value == 0) process.stdout.write(key + ",");
 }
+
+console.log(
+  "UC-10 Store day,hrs,wage in a object: ",
+  empDailyObjArray.toString()
+);
