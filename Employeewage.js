@@ -21,7 +21,6 @@ function CheckFullPartTime() {
 const isPartTime = 2;
 const wagePerHour = 20;
 let empHrs;
-let dailyWage;
 
 function GetEmpHrs() {
   empCheck = CheckFullPartTime();
@@ -48,11 +47,12 @@ for (let i = 1; i <= 20; i++) {
 
 console.log(`UC4- Total wage for month asuming 20 days: ${totalWage}`);
 
-//-------------------------UC5--------------------
+//-------------------------UC5--------------------------------------------------
 const WORKING_DAYS = 20;
 const WORKING_HRS = 160;
 let totalDays = 0;
 let totalWorkingHrs = 0;
+let dailyWage = [];
 
 while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   let hours = GetEmpHrs();
@@ -62,8 +62,11 @@ while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   }
   totalWorkingHrs += hours;
   totalDays++;
+  dailyWage.push(hours * wagePerHour);
 }
 totalWage = totalWorkingHrs * wagePerHour;
 console.log(
   `UC5- Total working days: ${totalDays}, Total working hours: ${totalWorkingHrs} and total wage= ${totalWage}`
 );
+
+console.log("UC-6 Daily wage array: ", dailyWage.toString());
