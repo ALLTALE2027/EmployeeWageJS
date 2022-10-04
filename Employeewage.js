@@ -53,6 +53,7 @@ const WORKING_HRS = 160;
 let totalDays = 0;
 let totalWorkingHrs = 0;
 let dailyWage = [];
+let MapDailyWage = new Map();
 
 while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   let hours = GetEmpHrs();
@@ -63,6 +64,7 @@ while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   totalWorkingHrs += hours;
   totalDays++;
   dailyWage.push(hours * wagePerHour);
+  MapDailyWage.set(totalDays, hours * wagePerHour);
 }
 totalWage = totalWorkingHrs * wagePerHour;
 console.log(
@@ -121,3 +123,12 @@ function GetTotalWorkingdays() {
 }
 dailyWage.filter((wage) => wage > 0).forEach(GetTotalWorkingdays);
 console.log("UC7-G Total number of working days= ", workingdays);
+
+console.log("UC8-A Map to store day wise wage: ", Array.from(MapDailyWage));
+
+totalWage = 0;
+for (const value of MapDailyWage.values()) {
+  totalWage += value;
+}
+
+console.log("UC8-B Total wage from Map: ", totalWage);
