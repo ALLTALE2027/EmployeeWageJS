@@ -54,6 +54,7 @@ let totalDays = 0;
 let totalWorkingHrs = 0;
 let dailyWage = [];
 let MapDailyWage = new Map();
+let MapDailyHour = new Map();
 
 while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   let hours = GetEmpHrs();
@@ -65,6 +66,7 @@ while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
   totalDays++;
   dailyWage.push(hours * wagePerHour);
   MapDailyWage.set(totalDays, hours * wagePerHour);
+  MapDailyHour.set(totalDays, hours);
 }
 totalWage = totalWorkingHrs * wagePerHour;
 console.log(
@@ -131,4 +133,36 @@ for (const value of MapDailyWage.values()) {
   totalWage += value;
 }
 
-console.log("UC8-B Total wage from Map: ", totalWage);
+console.log("UC8-B Total wage using  Map: ", totalWage);
+
+console.log("UC9-A Total wage using  Map: ", totalWage);
+
+console.log("UC9-A  Total hours by Map");
+for (let [key, value] of MapDailyHour) {
+  console.log("Day: " + key + ", hour worked is: " + value);
+}
+
+let totalHours = (total, dailyHrs) => (total += dailyHrs);
+console.log(
+  "UC9-A Total hours using  Map: ",
+  Array.from(MapDailyHour.values()).reduce(totalHours, 0)
+);
+
+console.log(
+  "UC9-B Full workings days: ",
+  Array.from(MapDailyHour)
+    .filter((e) => e[1] == 8)
+    .map((e) => e[0])
+    .toString()
+);
+console.log(
+  "UC9-B Part workings days: ",
+  Array.from(MapDailyHour)
+    .filter((e) => e[1] == 4)
+    .map((e) => e[0])
+    .toString()
+);
+process.stdout.write("UC9-B No workings days: ");
+for (const [key, value] of MapDailyHour) {
+  if (value == 0) process.stdout.write(key + ",");
+}
