@@ -78,7 +78,7 @@ while (totalDays < WORKING_DAYS && totalWorkingHrs < WORKING_HRS) {
         this.day +
         " Daily Hrs: " +
         this.empHrs +
-        "Daily Wage: " +
+        " Daily Wage: " +
         this.dailyWage
       );
     },
