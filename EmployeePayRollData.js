@@ -1,8 +1,10 @@
 class EmployeePayroll {
-  constructor(id, name, salary) {
-    this.id = id;
-    this.name = name;
-    this.salary = salary;
+  constructor(...employee) {
+    this.id = employee[0];
+    this.name = employee[1];
+    this.salary = employee[2];
+    this.gender = employee[3];
+    this.startDate = employee[4];
   }
 
   get name() {
@@ -21,7 +23,11 @@ class EmployeePayroll {
       " Name: " +
       this.name +
       " Salary: " +
-      this.salary
+      this.salary +
+      " Gender: " +
+      this.gender +
+      " Joining Date: " +
+      this.startDate
     );
   }
 }
@@ -29,5 +35,5 @@ class EmployeePayroll {
 let employee = new EmployeePayroll(11, "Darshan", 1000000);
 console.log(employee);
 
-employee.name = "Bruce";
-console.log(employee);
+let employee2 = new EmployeePayroll(11, "Bruce", 1500000, "M", new Date());
+console.log(employee2.toString());
