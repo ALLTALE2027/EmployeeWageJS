@@ -12,7 +12,12 @@ class EmployeePayroll {
   }
 
   set name(name) {
-    this._name = name;
+    //name check using Regex
+    let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    if (nameRegex.test(name)) {
+      this._name = name;
+    } else
+      throw "Check if name is valid i.e start with Capital and min 3 alphabets";
   }
 
   toString() {
@@ -32,8 +37,12 @@ class EmployeePayroll {
   }
 }
 
-let employee = new EmployeePayroll(11, "Darshan", 1000000);
+let employee = new EmployeePayroll(11, "Bruce", 1500000, "M", new Date());
 console.log(employee);
 
-let employee2 = new EmployeePayroll(11, "Bruce", 1500000, "M", new Date());
-console.log(employee2.toString());
+try {
+  employee.name = "darshan";
+  console.log(employee);
+} catch (error) {
+  console.log(error);
+}
